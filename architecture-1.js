@@ -57,7 +57,8 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
 
 
 
-var r = Raphael("architecture-1", 1024, 768);
+function render_into(element_id) {
+    var  r = Raphael(element_id, 1024, 768);
     // connections = [],
     // shapes = [ r.ellipse(190, 100, 30, 20),
     // r.rect(290, 80, 60, 40, 10),
@@ -144,7 +145,7 @@ var r = Raphael("architecture-1", 1024, 768);
         components[component].change_color = change_color;
     };
 
-    var render_all = function(components) {
+    var render_all = function() {
         for (var component in components) {
             if (components.hasOwnProperty(component)) {
                 components[component].render(r);
@@ -156,5 +157,13 @@ var r = Raphael("architecture-1", 1024, 768);
             second = components[connections[i][1]].rendered;
             r.connection(first, second, "#fff");
         };
-        return components;
+        return this;
     };
+
+    r.components = components;
+    r.connections = connections;
+    r.render_all = render_all;
+
+    return r;
+};
+

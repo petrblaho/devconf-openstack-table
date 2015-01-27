@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="reveal/lib/css/zenburn.css">
 
         <script src="raphael.js"></script>
+        <script src='architecture-1.js'></script>
 
         <!-- If the query includes 'print-pdf', include the PDF print sheet -->
         <script>
@@ -73,6 +74,7 @@
                     <h1>
                         Architecture schema
                     </h1>
+                    <div class="architecture" id="architecture_no_highlight"/>
                     <ul>
                         <li>
                         TODO: Obrazek
@@ -111,15 +113,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_dashboard" data-component="dashboard">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_dashboard"/>
                 </section>
 
                 <section>
@@ -144,15 +142,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_keystone" data-component="keystone">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_keystone"/>
                 </section>
 
                 <section>
@@ -177,15 +171,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_nova" data-component="nova">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_nova"/>
                 </section>
 
                 <section>
@@ -216,15 +206,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_neutron" data-component="neutron">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_neutron"/>
                 </section>
 
                 <section>
@@ -249,15 +235,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_cinder" data-component="cinder">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_cinder"/>
                 </section>
 
                 <section>
@@ -282,15 +264,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_swift" data-component="swift">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_swift"/>
                 </section>
 
                 <section>
@@ -315,15 +293,11 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_glance" data-component="glance">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_glance"/>
                 </section>
 
                 <section>
@@ -348,21 +322,12 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_heat" data-component="heat">
                     <h1>
                         Architecture schema
                     </h1>
-                    <ul>
-                        <li>
-                        TODO: Obrazek
-                        </li>
-                    </ul>
+                    <div class="architecture" id="architecture_heat"/>
                 </section>
-
-              <section>
-                <div id='architecture-1'/>
-                  <script src='architecture-1.js'></script>
-              </section>
             </div>
 
         </div>
@@ -397,6 +362,34 @@
             { src: 'reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
             ]
             });
+
+            function change_color_for(component) {
+                for(var key in archs) {
+                    archs[key].components[component].change_color();
+                };
+            };
+
+            var arch_elements = document.getElementsByClassName("architecture");
+            var archs = {};
+            for(var i = 0; i < arch_elements.length; i++) {
+                var el = arch_elements[i];
+                var arch = render_into(el.id);
+                arch.render_all();
+                archs[el.id] = arch;
+
+                var listen_to_state = el.parentElement.dataset.state;
+                var component_to_change_color = el.parentElement.dataset.component;
+                if (listen_to_state && component_to_change_color) {
+                    var f = function (comp) {
+                        Reveal.addEventListener(listen_to_state, function() {
+                                change_color_for(comp);
+                                }, false );
+                    };
+                    f(component_to_change_color);
+
+                };
+            };
+
 
         </script>
 
