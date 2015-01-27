@@ -65,10 +65,79 @@ var r = Raphael("architecture-1", 640, 480),
     r.ellipse(450, 100, 20, 20)
     ];
 
- connections.push(r.connection(shapes[0], shapes[1], "#fff"));
- connections.push(r.connection(shapes[1], shapes[2], "#fff", "#fff|5"));
- connections.push(r.connection(shapes[1], shapes[3], "#000", "#fff"));
+    connections.push(r.connection(shapes[0], shapes[1], "#fff"));
+    connections.push(r.connection(shapes[1], shapes[2], "#fff", "#fff|5"));
+    connections.push(r.connection(shapes[1], shapes[3], "#000", "#fff"));
 
- var cinder = r.path("M300 250 a50 10 0 0 0 100 0 a50 10 0 0 0 -100 0 v100 a50 10 0 0 0 100 0 v-100");
- cinder.attr({"fill":"yellow"});
- cinder.animate({"fill":"red"}, 3000);
+
+    var cylinder_path =  " a50 10 0 0 0 100 0 a50 10 0 0 0 -100 0 v100 a50 10 0 0 0 100 0 v-100";
+    var square_path = " v100 s 0 5 5 5 h100 s 5 0 5 -5 v-100 s 0 -5 -5 -5 h-100 s -5 0 -5 5 z";
+
+    var render = function(raphael) {
+        this.rendered = raphael.path("M" + this.origin + " " + this.path);
+        return this.rendered;
+    }
+
+    var colorize = function() {
+        this.rendered.attr({"fill":this.color});
+    }
+
+    var change_color = function() {
+        this.rendered.animate({"fill": this.target_color}, 3000);
+        return this;
+    };
+
+    var components = {
+        "cinder":{
+            "origin":"100 250",
+            "color":"yellow",
+            "target_color":"red",
+            "path":cylinder_path,
+        },
+        "swift":{
+            "origin":"300 250",
+            "color":"yellow",
+            "target_color":"red",
+            "path":cylinder_path,
+        },
+        "glance":{
+            "origin":"300 100",
+            "color":"yellow",
+            "target_color":"red",
+            "path":cylinder_path,
+        },
+        "neutron":{
+            "origin":"50 50",
+            "color":"yellow",
+            "target_color":"red",
+            "path":square_path,
+        },
+        "nova":{
+            "origin":"200 50",
+            "color":"yellow",
+            "target_color":"red",
+            "path":square_path,
+        },
+        "dashboard":{
+            "origin":"400 50",
+            "color":"yellow",
+            "target_color":"red",
+            "path":square_path,
+        },
+    };
+
+    for (var component in components) {
+        components[component].render = render;
+        components[component].colorize = colorize;
+        components[component].change_color = change_color;
+    };
+
+    var render_all = function(components) {
+        for (var component in components) {
+            if (components.hasOwnProperty(component)) {
+                components[component].render(r);
+                components[component].colorize();
+            };
+        };
+        return components;
+    };
