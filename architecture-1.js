@@ -57,17 +57,17 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
 
 
 
-var r = Raphael("architecture-1", 640, 480),
-    connections = [],
-    shapes = [ r.ellipse(190, 100, 30, 20),
-    r.rect(290, 80, 60, 40, 10),
-    r.rect(290, 180, 60, 40, 2),
-    r.ellipse(450, 100, 20, 20)
-    ];
+var r = Raphael("architecture-1", 1024, 768);
+    // connections = [],
+    // shapes = [ r.ellipse(190, 100, 30, 20),
+    // r.rect(290, 80, 60, 40, 10),
+    // r.rect(290, 180, 60, 40, 2),
+    // r.ellipse(450, 100, 20, 20)
+    // ];
 
-    connections.push(r.connection(shapes[0], shapes[1], "#fff"));
-    connections.push(r.connection(shapes[1], shapes[2], "#fff", "#fff|5"));
-    connections.push(r.connection(shapes[1], shapes[3], "#000", "#fff"));
+    // connections.push(r.connection(shapes[0], shapes[1], "#fff"));
+    // connections.push(r.connection(shapes[1], shapes[2], "#fff", "#fff|5"));
+    // connections.push(r.connection(shapes[1], shapes[3], "#000", "#fff"));
 
 
     var cylinder_path =  " a50 10 0 0 0 100 0 a50 10 0 0 0 -100 0 v100 a50 10 0 0 0 100 0 v-100";
@@ -89,42 +89,54 @@ var r = Raphael("architecture-1", 640, 480),
 
     var components = {
         "cinder":{
-            "origin":"100 250",
+            "origin":"500 325",
             "color":"yellow",
             "target_color":"red",
             "path":cylinder_path,
         },
         "swift":{
-            "origin":"300 250",
-            "color":"yellow",
+            "origin":"500 175",
+            "color":"green",
             "target_color":"red",
             "path":cylinder_path,
         },
         "glance":{
-            "origin":"300 100",
-            "color":"yellow",
+            "origin":"350 250",
+            "color":"orange",
             "target_color":"red",
             "path":cylinder_path,
         },
         "neutron":{
-            "origin":"50 50",
-            "color":"yellow",
+            "origin":"50 250",
+            "color":"violet",
             "target_color":"red",
             "path":square_path,
         },
         "nova":{
-            "origin":"200 50",
-            "color":"yellow",
+            "origin":"200 250",
+            "color":"blue",
             "target_color":"red",
             "path":square_path,
         },
         "dashboard":{
-            "origin":"400 50",
-            "color":"yellow",
+            "origin":"350 50",
+            "color":"lime",
             "target_color":"red",
             "path":square_path,
         },
     };
+
+    var connections = [
+        ["dashboard", "cinder"],
+        ["dashboard", "swift"],
+        ["dashboard", "glance"],
+        ["dashboard", "neutron"],
+        ["dashboard", "nova"],
+        ["cinder", "nova"],
+        ["swift", "glance"],
+        ["glance", "nova"],
+        ["neutron", "nova"],
+        ];
 
     for (var component in components) {
         components[component].render = render;
@@ -138,6 +150,11 @@ var r = Raphael("architecture-1", 640, 480),
                 components[component].render(r);
                 components[component].colorize();
             };
+        };
+        for(var i = 0; i < connections.length; i++) {
+            first = components[connections[i][0]].rendered;
+            second = components[connections[i][1]].rendered;
+            r.connection(first, second, "#fff");
         };
         return components;
     };
