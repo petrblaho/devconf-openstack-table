@@ -158,6 +158,13 @@ function render_into(element_id) {
             "target_color":"red",
             "shape":square,
         },
+        "keystone":{
+            "label":"keystone",
+            "origin":"350 450",
+            "color":"lime",
+            "target_color":"red",
+            "shape":square,
+        },
     };
 
     var connections = [
@@ -174,6 +181,13 @@ function render_into(element_id) {
         ["heat", "nova"],
         ["heat", "neutron"],
         ["heat", "glance"],
+        ["keystone", "glance"],
+        ["keystone", "nova"],
+        ["keystone", "neutron"],
+        ["keystone", "heat"],
+        ["keystone", "swift"],
+        ["keystone", "cinder"],
+        ["keystone", "dashboard"],
         ];
 
     for (var component in components) {
