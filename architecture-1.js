@@ -79,6 +79,14 @@ function render_into(element_id) {
         return this.rendered;
     }
 
+    var labelize = function(raphael) {
+        var pos = this.origin.split(" ");
+        var x = parseInt(pos[0]) + 50;
+        var y = parseInt(pos[1]) + 50;
+        this.rendered_label = raphael.text(x, y, this.label);
+        return this;
+    }
+
     var colorize = function() {
         this.rendered.attr({"fill":this.color});
     }
@@ -90,36 +98,42 @@ function render_into(element_id) {
 
     var components = {
         "cinder":{
+            "label":"cinder",
             "origin":"500 325",
             "color":"yellow",
             "target_color":"red",
             "path":cylinder_path,
         },
         "swift":{
+            "label":"swift",
             "origin":"500 175",
             "color":"green",
             "target_color":"red",
             "path":cylinder_path,
         },
         "glance":{
+            "label":"glance",
             "origin":"350 250",
             "color":"orange",
             "target_color":"red",
             "path":cylinder_path,
         },
         "neutron":{
+            "label":"neutron",
             "origin":"50 250",
             "color":"violet",
             "target_color":"red",
             "path":square_path,
         },
         "nova":{
+            "label":"nova",
             "origin":"200 250",
             "color":"blue",
             "target_color":"red",
             "path":square_path,
         },
         "dashboard":{
+            "label":"dashboard",
             "origin":"350 50",
             "color":"lime",
             "target_color":"red",
@@ -141,6 +155,7 @@ function render_into(element_id) {
 
     for (var component in components) {
         components[component].render = render;
+        components[component].labelize = labelize;
         components[component].colorize = colorize;
         components[component].change_color = change_color;
     };
@@ -149,6 +164,7 @@ function render_into(element_id) {
         for (var component in components) {
             if (components.hasOwnProperty(component)) {
                 components[component].render(r);
+                components[component].labelize(r);
                 components[component].colorize();
             };
         };
