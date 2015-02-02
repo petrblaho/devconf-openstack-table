@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.reveal h1 {
+  font-size: 2em;
+}
+
 img.logo {
   height: 96px;
   margin: 8px;
