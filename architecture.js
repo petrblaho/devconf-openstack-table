@@ -71,11 +71,15 @@ function render_into(element_id) {
     // connections.push(r.connection(shapes[1], shapes[3], "#000", "#fff"));
 
 
-    var cylinder_path =  " a50 10 0 0 0 100 0 a50 10 0 0 0 -100 0 v100 a50 10 0 0 0 100 0 v-100";
-    var square_path = " v100 s 0 5 5 5 h100 s 5 0 5 -5 v-100 s 0 -5 -5 -5 h-100 s -5 0 -5 5 z";
+    var cylinder = {
+        "path":" a50 10 0 0 0 100 0 a50 10 0 0 0 -100 0 v100 a50 10 0 0 0 100 0 v-100",
+    };
+    var square = {
+        "path":" v100 s 0 5 5 5 h100 s 5 0 5 -5 v-100 s 0 -5 -5 -5 h-100 s -5 0 -5 5 z",
+    };
 
     var render = function(raphael) {
-        this.rendered = raphael.path("M" + this.origin + " " + this.path);
+        this.rendered = raphael.path("M" + this.origin + " " + this.shape.path);
         return this.rendered;
     }
 
@@ -102,42 +106,42 @@ function render_into(element_id) {
             "origin":"500 325",
             "color":"yellow",
             "target_color":"red",
-            "path":cylinder_path,
+            "shape":cylinder,
         },
         "swift":{
             "label":"swift",
             "origin":"500 175",
             "color":"green",
             "target_color":"red",
-            "path":cylinder_path,
+            "shape":cylinder,
         },
         "glance":{
             "label":"glance",
             "origin":"350 250",
             "color":"orange",
             "target_color":"red",
-            "path":cylinder_path,
+            "shape":cylinder,
         },
         "neutron":{
             "label":"neutron",
             "origin":"50 250",
             "color":"violet",
             "target_color":"red",
-            "path":square_path,
+            "shape":square,
         },
         "nova":{
             "label":"nova",
             "origin":"200 250",
             "color":"blue",
             "target_color":"red",
-            "path":square_path,
+            "shape":square,
         },
         "dashboard":{
             "label":"dashboard",
             "origin":"350 50",
             "color":"lime",
             "target_color":"red",
-            "path":square_path,
+            "shape":square,
         },
     };
 
