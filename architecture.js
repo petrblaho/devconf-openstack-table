@@ -73,9 +73,17 @@ function render_into(element_id) {
 
     var cylinder = {
         "path":" a50 10 0 0 0 100 0 a50 10 0 0 0 -100 0 v100 a50 10 0 0 0 100 0 v-100",
+        "label_offset":{
+            "x":50,
+            "y":50,
+        },
     };
     var square = {
         "path":" v100 s 0 5 5 5 h100 s 5 0 5 -5 v-100 s 0 -5 -5 -5 h-100 s -5 0 -5 5 z",
+        "label_offset":{
+            "x":55,
+            "y":50,
+        },
     };
 
     var render = function(raphael) {
@@ -85,8 +93,8 @@ function render_into(element_id) {
 
     var labelize = function(raphael) {
         var pos = this.origin.split(" ");
-        var x = parseInt(pos[0]) + 50;
-        var y = parseInt(pos[1]) + 50;
+        var x = parseInt(pos[0]) + this.shape.label_offset.x;
+        var y = parseInt(pos[1]) + this.shape.label_offset.y;
         this.rendered_label = raphael.text(x, y, this.label);
         return this;
     }
