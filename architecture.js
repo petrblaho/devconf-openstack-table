@@ -151,6 +151,13 @@ function render_into(element_id) {
             "target_color":"red",
             "shape":square,
         },
+        "heat":{
+            "label":"heat",
+            "origin":"650 250",
+            "color":"lime",
+            "target_color":"red",
+            "shape":square,
+        },
     };
 
     var connections = [
@@ -159,10 +166,14 @@ function render_into(element_id) {
         ["dashboard", "glance"],
         ["dashboard", "neutron"],
         ["dashboard", "nova"],
+        ["dashboard", "heat"],
         ["cinder", "nova"],
         ["swift", "glance"],
         ["glance", "nova"],
         ["neutron", "nova"],
+        ["heat", "nova"],
+        ["heat", "neutron"],
+        ["heat", "glance"],
         ];
 
     for (var component in components) {
