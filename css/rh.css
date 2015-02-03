@@ -9,6 +9,7 @@
   left: inherit;
   right: 15px;
   top: 15px;
+  display: none;
 }
 
 img.logo {
