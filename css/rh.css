@@ -4,6 +4,13 @@
   font-size: 2em;
 }
 
+.reveal .playback {
+  position: fixed;
+  left: inherit;
+  right: 15px;
+  top: 15px;
+}
+
 img.logo {
   height: 96px;
   margin: 8px;
