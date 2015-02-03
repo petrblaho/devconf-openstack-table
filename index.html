@@ -67,7 +67,7 @@
                     </ul>
                 </section>
 
-                <section>
+                <section data-state="architecture_no_highlight">
                     <h1>
                         Architecture schema
                     </h1>
@@ -389,6 +389,12 @@
                 };
             };
 
+            function reset_all_colors() {
+                for(var key in archs) {
+                    archs[key].reset_all_colors();
+                };
+            };
+
             var arch_elements = document.getElementsByClassName("architecture");
             var archs = {};
             for(var i = 0; i < arch_elements.length; i++) {
@@ -407,6 +413,11 @@
                     };
                     f(component_to_change_color);
 
+                };
+                if (listen_to_state == 'architecture_no_highlight') {
+                    Reveal.addEventListener('architecture_no_highlight', function() {
+                            reset_all_colors();
+                    }, false );
                 };
             };
 
