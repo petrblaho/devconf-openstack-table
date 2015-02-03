@@ -108,6 +108,12 @@ function render_into(element_id) {
         return this;
     };
 
+    var reset_color = function() {
+        this.rendered.animate({"fill": this.color}, 1);
+        return this;
+    };
+
+
     var components = {
         "cinder":{
             "label":"cinder",
@@ -195,6 +201,7 @@ function render_into(element_id) {
         components[component].labelize = labelize;
         components[component].colorize = colorize;
         components[component].change_color = change_color;
+        components[component].reset_color = reset_color;
     };
 
     var render_all = function() {
@@ -213,9 +220,18 @@ function render_into(element_id) {
         return this;
     };
 
+    var reset_all_colors = function() {
+        for (var component in components) {
+            if (components.hasOwnProperty(component)) {
+                components[component].reset_color();
+            };
+        };
+    };
+
     r.components = components;
     r.connections = connections;
     r.render_all = render_all;
+    r.reset_all_colors = reset_all_colors;
 
     return r;
 };
