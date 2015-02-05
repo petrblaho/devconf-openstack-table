@@ -225,21 +225,21 @@ function render_into(element_id) {
         },
         "glance":{
             "label":"glance",
-            "origin":"350 250",
+            "origin":"650 250",
             "color":"#CC9900",
             "target_color":"grey",
             "shape":cylinder,
         },
         "neutron":{
             "label":"neutron",
-            "origin":"50 250",
+            "origin":"200 325",
             "color":"violet",
             "target_color":"grey",
             "shape":square,
         },
         "nova":{
             "label":"nova",
-            "origin":"200 250",
+            "origin":"200 175",
             "color":"blue",
             "target_color":"grey",
             "shape":square,
@@ -253,7 +253,7 @@ function render_into(element_id) {
         },
         "heat":{
             "label":"heat",
-            "origin":"650 250",
+            "origin":"50 250",
             "color":"lime",
             "target_color":"grey",
             "shape":square,
