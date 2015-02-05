@@ -1,4 +1,4 @@
-Raphael.fn.connection = function (obj1, obj2, line, bg) {
+Raphael.fn.connection = function (obj1, obj2, line, bg, obj1_point, obj2_point) {
     var bb1 = obj1.getBBox(), // box of obj1
         bb2 = obj2.getBBox(), // box of obj2
         p = [
@@ -78,11 +78,48 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
         }
     }
     // choose what points of objects will be connected
-    if (dis.length == 0) {
-        var res = [0, 4];
-    } else {
-        res = d[Math.min.apply(Math, dis)];
+    var res = [0, 4]
+    if (obj1_point && obj2_point)
+    {
+        switch(obj1_point)
+        {
+            case "top":
+                res[0] = 0;
+                break;
+            case "bottom":
+                res[0] = 1;
+                break;
+            case "left":
+                res[0] = 2;
+                break;
+            case "right":
+                res[0] = 3;
+                break;
+        };
+        switch(obj2_point)
+        {
+            case "top":
+                res[1] = 4;
+                break;
+            case "bottom":
+                res[1] = 5;
+                break;
+            case "left":
+                res[1] = 6;
+                break;
+            case "right":
+                res[1] = 7;
+                break;
+        };
     }
+    else
+    {
+        if (dis.length == 0) {
+            res = [0, 4];
+        } else {
+            res = d[Math.min.apply(Math, dis)];
+        }
+    };
 
     // select start and end points of line
     var x1 = p[res[0]].x,
