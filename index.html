@@ -230,37 +230,43 @@
 
                 <section>
                     <h1>
-                        Block Storage
+                        Orchestration
                     </h1>
                     <ul>
                         <li>
-                        Provides persistent block level storage devices
+                        App look is described by declarative language
                         </li>
                         <li>
-                        Self-service for users with snapshot and backup API
+                        Description gets translated to the OpenStack API calls
+                        </li>
+                        <li>
+                        Autoscaling and self-healing of apps
                         </li>
                     </ul>
                 </section>
 
                 <section>
                     <h1>
-                        Block Storage - Cinder
+                        Orchestration - Heat
                     </h1>
                     <ul>
                         <li>
-                        Multiple backends - Ceph, NetApp, Nexenta, SolidFire, and Zadara
+                        Composable resource templates
                         </li>
                         <li>
-                        Access and quota management
+                        Integrate other services as plugins
+                        </li>
+                        <li>
+                        You can define your custom resources
                         </li>
                     </ul>
                 </section>
 
-                <section data-state="architecture_cinder" data-component="cinder">
+                <section data-state="architecture_heat" data-component="heat">
                     <h1>
                         Architecture schema
                     </h1>
-                    <div class="architecture" id="architecture_cinder"/>
+                    <div class="architecture" id="architecture_heat"/>
                 </section>
 
                 <section>
@@ -300,6 +306,41 @@
 
                 <section>
                     <h1>
+                        Block Storage
+                    </h1>
+                    <ul>
+                        <li>
+                        Provides persistent block level storage devices
+                        </li>
+                        <li>
+                        Self-service for users with snapshot and backup API
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Block Storage - Cinder
+                    </h1>
+                    <ul>
+                        <li>
+                        Multiple backends - Ceph, NetApp, Nexenta, SolidFire, and Zadara
+                        </li>
+                        <li>
+                        Access and quota management
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_cinder" data-component="cinder">
+                    <h1>
+                        Architecture schema
+                    </h1>
+                    <div class="architecture" id="architecture_cinder"/>
+                </section>
+
+                <section>
+                    <h1>
                         Image Storage
                     </h1>
                     <ul>
@@ -328,47 +369,6 @@
                         Architecture schema
                     </h1>
                     <div class="architecture" id="architecture_glance"/>
-                </section>
-
-                <section>
-                    <h1>
-                        Orchestration
-                    </h1>
-                    <ul>
-                        <li>
-                        App look is described by declarative language
-                        </li>
-                        <li>
-                        Description gets translated to the OpenStack API calls
-                        </li>
-                        <li>
-                        Autoscaling and self-healing of apps
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h1>
-                        Orchestration - Heat
-                    </h1>
-                    <ul>
-                        <li>
-                        Composable resource templates
-                        </li>
-                        <li>
-                        Integrate other services as plugins
-                        </li>
-                        <li>
-                        You can define your custom resources
-                        </li>
-                    </ul>
-                </section>
-
-                <section data-state="architecture_heat" data-component="heat">
-                    <h1>
-                        Architecture schema
-                    </h1>
-                    <div class="architecture" id="architecture_heat"/>
                 </section>
             </div>
 
