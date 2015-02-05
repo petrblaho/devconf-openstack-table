@@ -1,9 +1,4 @@
 Raphael.fn.connection = function (obj1, obj2, line, bg) {
-    if (obj1.line && obj1.from && obj1.to) {
-        line = obj1;
-        obj1 = line.from;
-        obj2 = line.to;
-    }
     var bb1 = obj1.getBBox(), // box of obj1
         bb2 = obj2.getBBox(), // box of obj2
         p = [
@@ -105,18 +100,14 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
 
     // generate path for svg for line
     var path = ["M", x1.toFixed(3), y1.toFixed(3), "C", x2, y2, x3, y3, x4.toFixed(3), y4.toFixed(3)].join(",");
-    if (line && line.line) {
-        line.bg && line.bg.attr({path: path});
-        line.line.attr({path: path});
-    } else {
-        var color = typeof line == "string" ? line : "#000";
-        return {
-            bg: bg && bg.split && this.path(path).attr({stroke: bg.split("|")[0], fill: "none", "stroke-width": bg.split("|")[1] || 3}),
-            line: this.path(path).attr({stroke: color, fill: "none"}),
-            from: obj1,
-                to: obj2
-        };
-    }
+
+    var color = typeof line == "string" ? line : "#000";
+    return {
+        bg: bg && bg.split && this.path(path).attr({stroke: bg.split("|")[0], fill: "none", "stroke-width": bg.split("|")[1] || 3}),
+        line: this.path(path).attr({stroke: color, fill: "none"}),
+        from: obj1,
+        to: obj2
+    };
 };
 
 
