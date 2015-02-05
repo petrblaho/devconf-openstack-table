@@ -124,6 +124,7 @@ function render_into(element_id) {
         var x = parseInt(pos[0]) + this.shape.label_offset.x;
         var y = parseInt(pos[1]) + this.shape.label_offset.y;
         this.rendered_label = raphael.text(x, y, this.label);
+        this.rendered_label.attr({font: "20px Source Sans Pro,Helvetica,sans-serif"});
         return this;
     }
 
