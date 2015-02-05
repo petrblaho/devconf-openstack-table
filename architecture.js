@@ -104,7 +104,7 @@ function render_into(element_id) {
     }
 
     var change_color = function() {
-        this.rendered.animate({"fill": this.target_color}, 3000);
+        this.rendered.animate({"fill": this.target_color}, 1500);
         return this;
     };
 
