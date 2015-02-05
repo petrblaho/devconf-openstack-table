@@ -77,6 +77,7 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
             }
         }
     }
+    // choose what points of objects will be connected
     if (dis.length == 0) {
         var res = [0, 4];
     } else {
