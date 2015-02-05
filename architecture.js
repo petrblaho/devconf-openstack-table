@@ -151,7 +151,7 @@ Raphael.fn.connection = function (obj1, obj2, line, bg, obj1_point, obj2_point) 
 
 
 function render_into(element_id) {
-    var  r = Raphael(element_id, 1024, 768);
+    var  r = Raphael(element_id, 800, 600);
     // connections = [],
     // shapes = [ r.ellipse(190, 100, 30, 20),
     // r.rect(290, 80, 60, 40, 10),
