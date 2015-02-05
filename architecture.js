@@ -4,17 +4,45 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
         obj1 = line.from;
         obj2 = line.to;
     }
-    var bb1 = obj1.getBBox(),
-    bb2 = obj2.getBBox(),
-        p = [{x: bb1.x + bb1.width / 2, y: bb1.y - 1},
-        {x: bb1.x + bb1.width / 2, y: bb1.y + bb1.height + 1},
-        {x: bb1.x - 1, y: bb1.y + bb1.height / 2},
-        {x: bb1.x + bb1.width + 1, y: bb1.y + bb1.height / 2},
-            {x: bb2.x + bb2.width / 2, y: bb2.y - 1},
-            {x: bb2.x + bb2.width / 2, y: bb2.y + bb2.height + 1},
-                {x: bb2.x - 1, y: bb2.y + bb2.height / 2},
-                {x: bb2.x + bb2.width + 1, y: bb2.y + bb2.height / 2}],
-                    d = {}, dis = [];
+    var bb1 = obj1.getBBox(), // box of obj1
+        bb2 = obj2.getBBox(), // box of obj2
+        p = [
+                { // obj1 top
+                    x: bb1.cx,
+                    y: bb1.y - 1,
+                },
+                { // obj1 bottom
+                    x: bb1.cx,
+                    y: bb1.y2 + 1,
+                },
+                { // obj1 left
+                    x: bb1.x - 1,
+                    y: bb1.cy,
+                },
+                { // obj1 right
+                    x: bb1.x2 + 1,
+                    y: bb1.cy,
+                },
+                { // obj2 top
+                    x: bb2.cx,
+                    y: bb2.y - 1,
+                },
+                { // obj2 bottom
+                    x: bb2.cx,
+                    y: bb2.y2 + 1,
+                },
+                { // obj2 left
+                    x: bb2.x - 1,
+                    y: bb2.cy,
+                },
+                { // obj2 right
+                    x: bb2.x2 + 1,
+                    y: bb2.cy,
+                },
+            ],
+        d = {},
+        dis = [];
+
     for (var i = 0; i < 4; i++) {
         for (var j = 4; j < 8; j++) {
             var dx = Math.abs(p[i].x - p[j].x),
