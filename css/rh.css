@@ -4,6 +4,10 @@
   font-size: 2em;
 }
 
+#first h1 {
+  font-size: 4.5em;
+}
+
 .reveal .playback {
   position: fixed;
   left: inherit;
