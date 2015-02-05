@@ -309,7 +309,9 @@ function render_into(element_id) {
         for(var i = 0; i < connections.length; i++) {
             first = components[connections[i][0]].rendered;
             second = components[connections[i][1]].rendered;
-            r.connection(first, second, "#fff");
+            first_point = connections[i][2] || null;
+            second_point = connections[i][3] || null;
+            r.connection(first, second, "#fff", null, first_point, second_point);
         };
         return this;
     };
