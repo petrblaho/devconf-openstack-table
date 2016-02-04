@@ -55,7 +55,7 @@
 
                 <section data-state="architecture_no_highlight">
                     <h1>
-                        Architecture schema
+                        OpenStack ecosystem
                     </h1>
                     <div class="architecture" id="architecture_no_highlight"/>
                     <ul>
@@ -63,6 +63,216 @@
                         TODO: Obrazek
                         </li>
                     </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Identity
+                    </h1>
+                    <ul>
+                        <li>
+                        Authentication, authorization and service discovery
+                        </li>
+                        <li>
+                        Can support other existing backends as LDAP
+                        </li>
+                        <li>
+                        Can use external authentication (Kerberos, X.509, ...)
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Identity - Keystone
+                    </h1>
+                    <ul>
+                        <li>
+                        HTTP API
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_keystone" data-component="keystone">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_keystone"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Compute
+                    </h1>
+                    <ul>
+                        <li>
+                        Manages and automates pools of compute resources
+                        </li>
+                        <li>
+                        VM image and live VM management
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Compute - Nova
+                    </h1>
+                    <ul>
+                        <li>
+                        Supported hypervisors - KVM, Xen, VMware, LXC, and more
+                        </li>
+                        <li>
+                        Consists of multiple python daemons
+                        </li>
+                        <li>
+                        Native API as well as Amazon EC2 and S3 APIs
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_nova" data-component="nova">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_nova"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Networking
+                    </h1>
+                    <ul>
+                        <li>
+                        System for managing networks and IP addresses
+                        </li>
+                        <li>
+                        Pluggable, scalable and API-driven
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Networking - Neutron
+                    </h1>
+                    <ul>
+                        <li>
+                        Pluggable backend architecture
+                        </li>
+                        <li>
+                        Software-defined Network (OpenFlow)
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_neutron" data-component="neutron">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_neutron"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Object Storage
+                    </h1>
+                    <ul>
+                        <li>
+                        Distributed object storage system
+                        </li>
+                        <li>
+                        Scale horizontally simply by adding new servers
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Object Storage - Swift
+                    </h1>
+                    <ul>
+                        <li>
+                        Object versioning
+                        </li>
+                        <li>
+                        Simple REST API
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_swift" data-component="swift">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_swift"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Block Storage
+                    </h1>
+                    <ul>
+                        <li>
+                        Provides persistent block level storage devices
+                        </li>
+                        <li>
+                        Self-service for users with snapshot and backup API
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Block Storage - Cinder
+                    </h1>
+                    <ul>
+                        <li>
+                        Multiple backends - Ceph, NetApp, Nexenta, SolidFire, and Zadara
+                        </li>
+                        <li>
+                        Access and quota management
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_cinder" data-component="cinder">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_cinder"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Image Storage
+                    </h1>
+                    <ul>
+                        <li>
+                        Discovers, registers, and retrieves VM images
+                        </li>
+                        <li>
+                        RESTful API
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Image Storage - Glance
+                    </h1>
+                    <ul>
+                        <li>
+                        Can use as backend - file, Swift, Cinder, S3, ...
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_glance" data-component="glance">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_glance"/>
                 </section>
 
                 <section>
@@ -101,117 +311,9 @@
 
                 <section data-state="architecture_dashboard" data-component="dashboard">
                     <h1>
-                        Architecture schema
+                        OpenStack ecosystem
                     </h1>
                     <div class="architecture" id="architecture_dashboard"/>
-                </section>
-
-                <section>
-                    <h1>
-                        Identity
-                    </h1>
-                    <ul>
-                        <li>
-                        Authentication, authorization and service discovery
-                        </li>
-                        <li>
-                        Can support other existing backends as LDAP
-                        </li>
-                        <li>
-                        Can use external authentication (Kerberos, X.509, ...)
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h1>
-                        Identity - Keystone
-                    </h1>
-                    <ul>
-                        <li>
-                        HTTP API
-                        </li>
-                    </ul>
-                </section>
-
-                <section data-state="architecture_keystone" data-component="keystone">
-                    <h1>
-                        Architecture schema
-                    </h1>
-                    <div class="architecture" id="architecture_keystone"/>
-                </section>
-
-                <section>
-                    <h1>
-                        Compute
-                    </h1>
-                    <ul>
-                        <li>
-                        Manages and automates pools of compute resources
-                        </li>
-                        <li>
-                        VM image and live VM management
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h1>
-                        Compute - Nova
-                    </h1>
-                    <ul>
-                        <li>
-                        Supported hypervisors - KVM, Xen, VMware, LXC, and more
-                        </li>
-                        <li>
-                        Consists of multiple python daemons
-                        </li>
-                        <li>
-                        Native API as well as Amazon EC2 and S3 APIs
-                        </li>
-                    </ul>
-                </section>
-
-                <section data-state="architecture_nova" data-component="nova">
-                    <h1>
-                        Architecture schema
-                    </h1>
-                    <div class="architecture" id="architecture_nova"/>
-                </section>
-
-                <section>
-                    <h1>
-                        Networking
-                    </h1>
-                    <ul>
-                        <li>
-                        System for managing networks and IP addresses
-                        </li>
-                        <li>
-                        Pluggable, scalable and API-driven
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h1>
-                        Networking - Neutron
-                    </h1>
-                    <ul>
-                        <li>
-                        Pluggable backend architecture
-                        </li>
-                        <li>
-                        Software-defined Network (OpenFlow)
-                        </li>
-                    </ul>
-                </section>
-
-                <section data-state="architecture_neutron" data-component="neutron">
-                    <h1>
-                        Architecture schema
-                    </h1>
-                    <div class="architecture" id="architecture_neutron"/>
                 </section>
 
                 <section>
@@ -250,111 +352,178 @@
 
                 <section data-state="architecture_heat" data-component="heat">
                     <h1>
-                        Architecture schema
+                        OpenStack ecosystem
                     </h1>
                     <div class="architecture" id="architecture_heat"/>
                 </section>
 
                 <section>
                     <h1>
-                        Object Storage
+                        Bare Metal
                     </h1>
                     <ul>
                         <li>
-                        Distributed object storage system
-                        </li>
-                        <li>
-                        Scale horizontally simply by adding new servers
+                        Provisioning on bare metal systems in addition to virtual machines
                         </li>
                     </ul>
                 </section>
 
                 <section>
                     <h1>
-                        Object Storage - Swift
+                        Bare Metal - Ironic
                     </h1>
                     <ul>
                         <li>
-                        Object versioning
+                        PXE/IPMI
                         </li>
                         <li>
-                        Simple REST API
+                        Pluggable drivers (vendor-specific).
                         </li>
                     </ul>
                 </section>
 
-                <section data-state="architecture_swift" data-component="swift">
+                <section data-state="architecture_ironic" data-component="ironic">
                     <h1>
-                        Architecture schema
+                        OpenStack ecosystem
                     </h1>
-                    <div class="architecture" id="architecture_swift"/>
+                    <div class="architecture" id="architecture_ironic"/>
                 </section>
 
                 <section>
                     <h1>
-                        Block Storage
+                        Data Processing
                     </h1>
                     <ul>
                         <li>
-                        Provides persistent block level storage devices
+                        Data processing inside an OpenStack cluster
                         </li>
                         <li>
-                        Self-service for users with snapshot and backup API
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h1>
-                        Block Storage - Cinder
-                    </h1>
-                    <ul>
-                        <li>
-                        Multiple backends - Ceph, NetApp, Nexenta, SolidFire, and Zadara
-                        </li>
-                        <li>
-                        Access and quota management
-                        </li>
-                    </ul>
-                </section>
-
-                <section data-state="architecture_cinder" data-component="cinder">
-                    <h1>
-                        Architecture schema
-                    </h1>
-                    <div class="architecture" id="architecture_cinder"/>
-                </section>
-
-                <section>
-                    <h1>
-                        Image Storage
-                    </h1>
-                    <ul>
-                        <li>
-                        Discovers, registers, and retrieves VM images
-                        </li>
-                        <li>
-                        RESTful API
+                        Higher level description of Big Data clusters and jobs
                         </li>
                     </ul>
                 </section>
 
                 <section>
                     <h1>
-                        Image Storage - Glance
+                        Data Processing - Sahara
                     </h1>
                     <ul>
                         <li>
-                        Can use as backend - file, Swift, Cinder, S3, ...
+                        Creates and manages different types of Big Data clusters (Hadoop, Spark)
+                        </li>
+                        <li>
+                        EDP (Elastic Data Processing) - runs jobs on the Big Data cluster (retrieved/stored from Swift)
                         </li>
                     </ul>
                 </section>
 
-                <section data-state="architecture_glance" data-component="glance">
+                <section data-state="architecture_sahara" data-component="sahara">
                     <h1>
-                        Architecture schema
+                        OpenStack ecosystem
                     </h1>
-                    <div class="architecture" id="architecture_glance"/>
+                    <div class="architecture" id="architecture_sahara"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Database
+                    </h1>
+                    <ul>
+                        <li>
+                        Provision and handles databases
+                        </li>
+                        <li>
+                        Unified REST API to create databases, users, etc
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Database - Trove
+                    </h1>
+                    <ul>
+                        <li>
+                        Creates and manages different types of databases (MariaDB, MySQL, PostgreSQL)
+                        </li>
+                        <li>
+                        Backups, clustering, user management
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_trove" data-component="trove">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_trove"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Telemetry
+                    </h1>
+                    <ul>
+                        <li>
+                        Monitoring and meters
+                        </li>
+                        <li>
+                        Data useful for resource billing
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Telemetry - Ceilometer
+                    </h1>
+                    <ul>
+                        <li>
+                        Provide services to retrieve and access meters
+                        </li>
+                        <li>
+                        Receive monitoring notifications from services, or polling
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_ceilometer" data-component="ceilometer">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_ceilometer"/>
+                </section>
+
+                <section>
+                    <h1>
+                        Shared Filesystems
+                    </h1>
+                    <ul>
+                        <li>
+                        Common access point for shared filesystems in the Cloud
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>
+                        Shared Filesystems - Manila
+                    </h1>
+                    <ul>
+                        <li>
+                        Different backends (NFS, CIFS, GlusterFS, HDFS)
+                        </li>
+                        <li>
+                        Exports shares with ACLs
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="architecture_manila" data-component="manila">
+                    <h1>
+                        OpenStack ecosystem
+                    </h1>
+                    <div class="architecture" id="architecture_manila"/>
                 </section>
             </div>
 

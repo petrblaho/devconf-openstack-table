@@ -180,30 +180,64 @@ function render_into(element_id) {
     };
 
     var render = function(raphael) {
-        this.rendered = raphael.path("M" + this.origin + " " + this.shape.path);
+        if (this.shape != undefined) {
+            this.rendered = raphael.path("M" + this.origin + " " + this.shape.path);
+        } else if (this.type == "ellipse") {
+            var pos = this.origin.split(" ");
+            var x = parseInt(pos[0]);
+            var y = parseInt(pos[1]);
+            var size = this.size.split(" ");
+            var width = parseInt(size[0]);
+            var height = parseInt(size[1]);
+            this.rendered = raphael.ellipse(x, y, width, height);
+        }
         return this.rendered;
     }
 
     var labelize = function(raphael) {
-        var pos = this.origin.split(" ");
-        var x = parseInt(pos[0]) + this.shape.label_offset.x;
-        var y = parseInt(pos[1]) + this.shape.label_offset.y;
-        this.rendered_label = raphael.text(x, y, this.label);
-        this.rendered_label.attr({font: "20px Source Sans Pro,Helvetica,sans-serif"});
+        if (this.label != undefined) {
+            var pos = this.origin.split(" ");
+            if (this.shape != undefined) {
+                var offset_x = this.shape.label_offset.x;
+                var offset_y = this.shape.label_offset.y;
+            } else {
+                var offset_x = 0;
+                var offset_y = 0;
+            }
+            var x = parseInt(pos[0]) + offset_x;
+            var y = parseInt(pos[1]) + offset_y;
+            this.rendered_label = raphael.text(x, y, this.label);
+            var label_color = this.label_color || "black";
+            var label_size = this.label_size || "20px";
+            this.rendered_label.attr({font: label_size +" Source Sans Pro,Helvetica,sans-serif",
+                                      fill: label_color});
+        }
         return this;
     }
 
     var colorize = function() {
-        this.rendered.attr({"fill":this.color});
+        if (this.color != undefined) {
+            this.rendered.attr({"fill":this.color});
+        }
+        if (this.border != undefined) {
+            this.rendered.attr({"stroke": this.border, "stroke-width": "3"});
+        }
     }
 
     var change_color = function() {
-        this.rendered.animate({"fill": this.target_color}, 1500);
+        if (this.color != undefined) {
+            this.rendered.animate({"fill": this.target_color}, 1500);
+        }
         return this;
     };
 
     var reset_color = function() {
-        this.rendered.animate({"fill": this.color}, 1);
+        if (this.color != undefined) {
+            this.rendered.animate({"fill": this.color}, 1);
+        }
+        if (this.border != undefined) {
+            this.rendered.animate({"stroke": this.border}, 1);
+        }
         return this;
     };
 
@@ -211,83 +245,119 @@ function render_into(element_id) {
     var components = {
         "cinder":{
             "label":"cinder",
-            "origin":"525 350",
-            "color":"#CC6600",
+            "origin":"430 150",
+            "color":"#CC9922",
             "target_color":"grey",
             "shape":cylinder,
         },
         "swift":{
             "label":"swift",
-            "origin":"525 150",
-            "color":"#CCCC66",
+            "origin":"430 400",
+            "color":"#EEAA22",
             "target_color":"grey",
             "shape":cylinder,
         },
         "glance":{
             "label":"glance",
-            "origin":"675 250",
-            "color":"#CC9900",
+            "origin":"510 280",
+            "color":"#CC6622",
             "target_color":"grey",
             "shape":cylinder,
         },
         "neutron":{
             "label":"neutron",
-            "origin":"175 350",
+            "origin":"215 280",
             "color":"#99CCCC",
             "target_color":"grey",
             "shape":square,
         },
         "nova":{
             "label":"nova",
-            "origin":"175 150",
+            "origin":"300 150",
             "color":"#33FFFF",
-            "target_color":"grey",
-            "shape":square,
-        },
-        "dashboard":{
-            "label":"dashboard",
-            "origin":"350 50",
-            "color":"#33FF33",
-            "target_color":"grey",
-            "shape":square,
-        },
-        "heat":{
-            "label":"heat",
-            "origin":"25 250",
-            "color":"#33CCCC",
             "target_color":"grey",
             "shape":square,
         },
         "keystone":{
             "label":"keystone",
-            "origin":"350 450",
-            "color":"#FF3300",
+            "origin":"300 400",
+            "color":"#66DDDD",
             "target_color":"grey",
             "shape":square,
         },
+        "heat":{
+            "label":"heat",
+            "origin":"540 30",
+            "color":"#33CCCC",
+            "target_color":"grey",
+            "shape":square,
+        },
+        "dashboard":{
+            "label":"dashboard",
+            "origin":"190 25",
+            "color":"#33FF33",
+            "target_color":"grey",
+            "shape":square,
+        },
+        "ironic":{
+            "label":"ironic",
+            "origin":"50 90",
+            "color":"#33AAEE",
+            "target_color":"grey",
+            "shape":square,
+        },
+        "sahara":{
+            "label":"sahara",
+            "origin":"30 260",
+            "color":"#EE6600",
+            "target_color":"grey",
+            "shape":square,
+        },
+        "trove":{
+            "label":"trove",
+            "origin":"100 450",
+            "color":"#FF3300",
+            "target_color":"grey",
+            "shape":cylinder,
+        },
+        "ceilometer":{
+            "label":"ceilometer",
+            "origin":"670 200",
+            "color":"#66CCFF",
+            "target_color":"grey",
+            "shape":square,
+        },
+        "manila":{
+            "label":"manila",
+            "origin":"680 380",
+            "color":"#DD3311",
+            "target_color":"grey",
+            "shape":cylinder,
+        },
+        "ellipseset":{
+            "label":"Core Services",
+            "label_color": "white",
+            "label_size": "30px",
+            "origin":"420 330",
+            "size": "248 215",
+            "border":"white",
+            "type": "ellipse",
+        }
     };
 
     var connections = [
-        ["dashboard", "cinder", "right", "left"],
-        ["dashboard", "swift", "right", "top"],
-        ["dashboard", "glance", "right", "top"],
-        ["dashboard", "neutron", "left", "right"],
-        ["dashboard", "nova", "left", "top"],
-        ["dashboard", "heat", "left", "top"],
         ["cinder", "nova", "left", "right"],
-        ["swift", "glance", "right", "top"],
-        ["glance", "nova", "left", "right"],
+        ["swift", "glance", "right", "bottom"],
+        ["glance", "nova", "left", "bottom"],
         ["neutron", "nova", "top", "bottom"],
-        ["heat", "nova", "top", "left"],
-        ["heat", "neutron", "bottom", "left"],
-        ["heat", "glance", "right", "left"],
-        ["keystone", "glance", "right", "bottom"],
-        ["keystone", "nova", "left", "right"],
+        ["keystone", "glance", "top", "left"],
+        ["keystone", "nova", "top", "bottom"],
         ["keystone", "neutron", "left", "bottom"],
-        ["keystone", "heat", "left", "bottom"],
         ["keystone", "swift", "right", "left"],
-        ["keystone", "cinder", "right", "bottom"],
-        ["keystone", "dashboard", "top", "bottom"],
+        ["keystone", "cinder", "top", "bottom"],
+        ["heat", "ellipseset", "right", "right"],
+        ["heat", "sahara", "left", "top"],
+        ["dashboard", "ellipseset", "right", "top"],
         ];
 
     for (var component in components) {
@@ -306,6 +376,7 @@ function render_into(element_id) {
                 components[component].colorize();
             };
         };
+        /*
         for(var i = 0; i < connections.length; i++) {
             first = components[connections[i][0]].rendered;
             second = components[connections[i][1]].rendered;
@@ -313,6 +384,7 @@ function render_into(element_id) {
             second_point = connections[i][3] || null;
             r.connection(first, second, "#fff", null, first_point, second_point);
         };
+        */
         return this;
     };
 
@@ -325,7 +397,7 @@ function render_into(element_id) {
     };
 
     r.components = components;
-    r.connections = connections;
+    //r.connections = connections;
     r.render_all = render_all;
     r.reset_all_colors = reset_all_colors;
 
